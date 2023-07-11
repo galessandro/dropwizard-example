@@ -1,0 +1,22 @@
+services:
+  db:
+    container_name: postgres-dropwizard
+    image: postgres:14.5
+    environment:
+      POSTGRES_USER: ggranados
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ggranados
+      PGDATA: /data/postgres
+    volumes:
+      - dbv:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - dbn
+    restart: unless-stopped
+networks:
+  dbn:
+    driver: bridge
+
+volumes:
+  dbv:
